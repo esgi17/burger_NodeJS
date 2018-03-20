@@ -1,3 +1,4 @@
 module.exports = {
-  BurgerController: require('./burger')
+  BurgerController: require('./burger'),
+  DrinkController: require('./drink')
 }
