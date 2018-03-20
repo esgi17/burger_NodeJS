@@ -12,7 +12,7 @@ ModelIndex.getModel = function (modelName) {
     return this[modelName];
 };
 
-const sequelize = new Sequelize('project-sample', 'root', '', {
+const sequelize = new Sequelize('burger_project', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   port: 3306,

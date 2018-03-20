@@ -9,8 +9,7 @@ drinkRouter.use(bodyParser.json());
 drinkRouter.post('/', function(req, res) {
     const name = req.body.name;
     const price = req.body.price;
-    const size = req.body.size;
-    if( name === undefined || price === undefined || size === undefined ) {
+    if( name === undefined || price === undefined ) {
         res.status(400).end();
         return;
     }
