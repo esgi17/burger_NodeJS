@@ -4,7 +4,7 @@ const Op = ModelIndex.sequelize.Op;
 
 const DrinkController = function() { };
 
-DrinkController.add = function(name, price, size) {
+DrinkController.add = function(name, price) {
     return Drink.create({
         name: name,
         price: price,

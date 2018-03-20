@@ -14,7 +14,7 @@ drinkRouter.post('/', function(req, res) {
         res.status(400).end();
         return;
     }
-    DrinkController.add(name, price, size)
+    DrinkController.add(name, price)
       .then( (drink) => {
           res.status(201).json(drink);
       })

@@ -9,10 +9,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        size: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         price: {
             type: DataTypes.DOUBLE,
             allowNull: false
