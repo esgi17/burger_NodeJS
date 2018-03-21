@@ -4,12 +4,13 @@ const Op = ModelIndex.sequelize.Op;
 
 const DrinkController = function() { };
 
-DrinkController.add = function(name, price) {
+DrinkController.add = function(name, price, size_id) {
     return Drink.create({
         name: name,
         price: price,
-        size: size
+        size_id: size_id
     });
+
 }
 
 DrinkController.getAll = function(search) {
@@ -22,8 +23,22 @@ DrinkController.getAll = function(search) {
         };
     }
     options.where = where;
-    return Drink.findAll(options);
+
+    return Drink.findAll(options)
+      .then( (drinks) => {
+          for( drink in drinks ) {
+              drink.size = ModelIndex.Size.find({
+                  where: {
+                    id: drink.size_id
+                  }
+              });
+          }
+          return drinks;
+      });
+
+
 }
+
 /*
 BurgerController.add = function(name, price) {
     return Burger.create({

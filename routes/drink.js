@@ -9,11 +9,12 @@ drinkRouter.use(bodyParser.json());
 drinkRouter.post('/', function(req, res) {
     const name = req.body.name;
     const price = req.body.price;
-    if( name === undefined || price === undefined ) {
+    const sizeId = req.body.size_id;
+    if( name === undefined || price === undefined || sizeId == undefined ) {
         res.status(400).end();
         return;
     }
-    DrinkController.add(name, price)
+    DrinkController.add(name, price, parseFloat(sizeId))
       .then( (drink) => {
           res.status(201).json(drink);
       })

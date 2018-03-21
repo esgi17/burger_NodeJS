@@ -18,7 +18,7 @@ module.exports = function (sequelize, DataTypes) {
         underscored: true,
         freezeTableName: true
     });
-  //  Burger.associate = _associate;
+    Drink.associate = _associate;
     return Drink;
 };
 
@@ -28,4 +28,5 @@ function _associate(models) {
   /*models.Project.hasMany(models.Task, {
     as: 'tasks'
   });*/
+  models.Drink.belongsTo(models.Size);
 }
