@@ -28,4 +28,7 @@ function _associate(models) {
   models.Size.hasMany(models.Drink, {
     as: 'drinks'
   });
+  models.Size.hasMany(models.Fries, {
+    as: 'fries'
+  });
 }

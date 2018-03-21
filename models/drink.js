@@ -28,5 +28,7 @@ function _associate(models) {
   /*models.Project.hasMany(models.Task, {
     as: 'tasks'
   });*/
-  models.Drink.belongsTo(models.Size);
+  models.Drink.belongsTo(models.Size, {
+    as : 'size'
+  });
 }

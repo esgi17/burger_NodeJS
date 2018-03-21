@@ -14,29 +14,20 @@ DrinkController.add = function(name, price, size_id) {
 }
 
 DrinkController.getAll = function(search) {
-    const options = {};
+    const options = {
+      include: [{
+        model: ModelIndex.Size,
+        as : 'size'
+      }]
+    };
     const where = {};
-
     if( search !== undefined ) {
         where.name = {
             [Op.like]:`${search}%`
         };
     }
     options.where = where;
-
-    return Drink.findAll(options)
-      .then( (drinks) => {
-          for( drink in drinks ) {
-              drink.size = ModelIndex.Size.find({
-                  where: {
-                    id: drink.size_id
-                  }
-              });
-          }
-          return drinks;
-      });
-
-
+    return Drink.findAll(options);
 }
 
 /*
