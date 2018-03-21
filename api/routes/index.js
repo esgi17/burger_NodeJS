@@ -8,6 +8,7 @@ RouteManager.attach = function(app) {
     app.use('/drink', require('./drink'));
     app.use('/size', require('./size'));
     app.use('/fries', require('./fries'));
+    app.use('/user', require('./user'));
 };
 
 /**

@@ -17,7 +17,7 @@ function _startServer() {
 
   RouteManager.attach(app);
 
-  app.listen(7777, function() {
-    console.log('Server started on 9999...');
+  app.listen(8000, function() {
+    console.log('Server started on 8000...');
   });
 }
