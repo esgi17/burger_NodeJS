@@ -4,6 +4,9 @@ const Op = ModelIndex.sequelize.Op;
 
 const DrinkController = function() { };
 
+/**
+*  Creation d'un element en base
+**/
 DrinkController.add = function(name, price, size_id) {
     return Drink.create({
         name: name,
@@ -13,6 +16,9 @@ DrinkController.add = function(name, price, size_id) {
 
 }
 
+/**
+*  Récupération des élements en base
+**/
 DrinkController.getAll = function(search) {
     const options = {
       include: [{
@@ -30,4 +36,5 @@ DrinkController.getAll = function(search) {
     return Drink.findAll(options);
 }
 
+// Export du controller
 module.exports = DrinkController;

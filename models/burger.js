@@ -25,7 +25,5 @@ module.exports = function (sequelize, DataTypes) {
 // INTERNAL
 
 function _associate(models) {
-  /*models.Project.hasMany(models.Task, {
-    as: 'tasks'
-  });*/
+  // Associations
 }

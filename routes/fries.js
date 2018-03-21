@@ -6,6 +6,9 @@ const FriesController = controllers.FriesController;
 const friesRouter = express.Router();
 friesRouter.use(bodyParser.json());
 
+/*
+* Route de récupération des données
+*/
 friesRouter.get('/', function(req,res) {
     // Code
     const name = req.query.name;
@@ -19,6 +22,9 @@ friesRouter.get('/', function(req,res) {
       });
 });
 
+/*
+* Route d'ajout de données
+*/
 friesRouter.post('/', function(req,res) {
     // Code
     const name = req.body.name;

@@ -6,7 +6,9 @@ const SizeController = controllers.SizeController;
 const sizeRouter = express.Router();
 sizeRouter.use(bodyParser.json());
 
-// Routes
+/*
+* Route de récupération des données
+*/
 sizeRouter.get('/', function(req, res) {
   const name = req.query.name;
   SizeController.getAll(name)
@@ -19,6 +21,9 @@ sizeRouter.get('/', function(req, res) {
     });
 });
 
+/*
+* Route d'ajout de données
+*/
 sizeRouter.post('/', function(req, res) {
   const libelle = req.body.libelle;
   const price_add = req.body.price_add;

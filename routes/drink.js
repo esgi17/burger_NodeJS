@@ -6,6 +6,9 @@ const DrinkController = controllers.DrinkController;
 const drinkRouter = express.Router();
 drinkRouter.use(bodyParser.json());
 
+/*
+* Route d'ajout de données
+*/
 drinkRouter.post('/', function(req, res) {
     const name = req.body.name;
     const price = req.body.price;
@@ -24,6 +27,9 @@ drinkRouter.post('/', function(req, res) {
       });
 });
 
+/*
+* Route de récupération des données
+*/
 drinkRouter.get('/', function(req, res) {
     const name = req.query.name;
     DrinkController.getAll(name)

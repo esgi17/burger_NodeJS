@@ -4,6 +4,9 @@ const Op = ModelIndex.sequelize.Op;
 
 const BurgerController = function() { };
 
+/**
+*  Creation d'un element en base
+**/
 BurgerController.add = function(name, price) {
     return Burger.create({
         name: name,
@@ -11,6 +14,9 @@ BurgerController.add = function(name, price) {
     });
 };
 
+/**
+*  Récupération des élements en base
+**/
 BurgerController.getAll = function (search) {
     const options = {};
     const where = {};
@@ -24,4 +30,5 @@ BurgerController.getAll = function (search) {
     return Burger.findAll(options);
 };
 
+// Export du controller
 module.exports = BurgerController;

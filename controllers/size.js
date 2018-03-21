@@ -4,6 +4,9 @@ const Op = ModelIndex.sequelize.Op;
 
 const SizeController = function() { };
 
+/**
+*  Creation d'un element en base
+**/
 SizeController.add = function(libelle, price_add) {
     return Size.create({
         libelle: libelle,
@@ -11,6 +14,9 @@ SizeController.add = function(libelle, price_add) {
     });
 };
 
+/**
+*  Récupération des élements en base
+**/
 SizeController.getAll = function(search) {
     const options = {};
     const where = {};
@@ -24,4 +30,5 @@ SizeController.getAll = function(search) {
     return Size.findAll(options);
 }
 
+// Export du controller
 module.exports = SizeController;

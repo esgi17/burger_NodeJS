@@ -25,9 +25,7 @@ module.exports = function (sequelize, DataTypes) {
 // INTERNAL
 
 function _associate(models) {
-  /*models.Project.hasMany(models.Task, {
-    as: 'tasks'
-  });*/
+  // Drink possède une taille
   models.Drink.belongsTo(models.Size, {
     as : 'size'
   });

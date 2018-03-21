@@ -6,6 +6,9 @@ const BurgerController = controllers.BurgerController;
 const burgerRouter = express.Router();
 burgerRouter.use(bodyParser.json());
 
+/*
+* Route d'ajout de données
+*/
 burgerRouter.post('/', function(req,res) {
     const name = req.body.name;
     const price = req.body.price;
@@ -23,6 +26,9 @@ burgerRouter.post('/', function(req,res) {
       });
 });
 
+/*
+* Route de récupération des données
+*/
 burgerRouter.get('/', function(req, res) {
     const name = req.query.name;
     BurgerController.getAll(name)

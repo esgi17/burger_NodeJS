@@ -25,9 +25,11 @@ module.exports = function (sequelize, DataTypes) {
 // INTERNAL
 
 function _associate(models) {
+  // Drink possède une taille
   models.Size.hasMany(models.Drink, {
     as: 'drinks'
   });
+  // Fries possède une taille
   models.Size.hasMany(models.Fries, {
     as: 'fries'
   });

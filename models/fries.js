@@ -25,6 +25,7 @@ module.exports = function (sequelize, DataTypes) {
 // INTERNAL
 
 function _associate(models) {
+  // Frites possède une taille
   models.Fries.belongsTo(models.Size, {
     as : 'size'
   });

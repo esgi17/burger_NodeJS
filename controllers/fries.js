@@ -4,6 +4,9 @@ const Op = ModelIndex.sequelize.Op;
 
 const FriesController = function() { };
 
+/**
+*  Creation d'un element en base
+**/
 FriesController.add = function(name, price, size_id) {
     return Fries.create({
         name: name,
@@ -12,6 +15,9 @@ FriesController.add = function(name, price, size_id) {
     });
 }
 
+/**
+*  Récupération des élements en base
+**/
 FriesController.getAll = function(search) {
     const options = {
       include: [{
@@ -29,4 +35,5 @@ FriesController.getAll = function(search) {
     return Fries.findAll(options);
 }
 
+// Export du controller
 module.exports = FriesController;
