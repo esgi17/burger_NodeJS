@@ -1,5 +1,6 @@
 module.exports = {
   BurgerController: require('./burger'),
   DrinkController: require('./drink'),
-  SizeController: require('./size') 
+  SizeController: require('./size'),
+  FriesController: require('./fries')
 }

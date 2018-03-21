@@ -1,19 +1,18 @@
 const ModelIndex = require('../models');
-const Drink = ModelIndex.Drink;
+const Fries = ModelIndex.Fries;
 const Op = ModelIndex.sequelize.Op;
 
-const DrinkController = function() { };
+const FriesController = function() { };
 
-DrinkController.add = function(name, price, size_id) {
-    return Drink.create({
+FriesController.add = function(name, price, size_id) {
+    return Fries.create({
         name: name,
         price: price,
         size_id: size_id
     });
-
 }
 
-DrinkController.getAll = function(search) {
+FriesController.getAll = function(search) {
     const options = {
       include: [{
         model: ModelIndex.Size,
@@ -27,7 +26,7 @@ DrinkController.getAll = function(search) {
         };
     }
     options.where = where;
-    return Drink.findAll(options);
+    return Fries.findAll(options);
 }
 
-module.exports = DrinkController;
+module.exports = FriesController;
