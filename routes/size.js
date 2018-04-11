@@ -7,25 +7,10 @@ const SizeController = controllers.SizeController;
 const sizeRouter = express.Router();
 sizeRouter.use(bodyParser.json());
 
-sizeRouter.use(function(req, res, next) {
-  // check header or url parameters or post parameters for token
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
-  console.log(token);
-  // decode token
-  if (UserController.checkToken(token)) {
-      next();
-
-  } else {
-    return res.status(403).send({
-        success: false,
-        message: 'No token or bad token provided.'
-    });
-  }
-});
-
-/*
+/**
 * Route de récupération des données
-*/
+* /size/ récupère toutes les boissons correspondante aux params envoyés
+**/
 sizeRouter.get('/', function(req, res) {
   const name = req.query.name;
   SizeController.getAll(name)
@@ -36,6 +21,24 @@ sizeRouter.get('/', function(req, res) {
         console.error(err);
         res.status(500).end();
     });
+});
+
+/*
+* MiddleWare de vérification de Token
+*/
+sizeRouter.use(function(req, res, next) {
+  // check header or url parameters or post parameters for token
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+  console.log(token);
+  // decode token
+  if (UserController.checkToken(token)) {
+      next();
+  } else {
+    return res.status(403).send({
+        success: false,
+        message: 'No token or bad token provided.'
+    });
+  }
 });
 
 /*

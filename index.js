@@ -21,7 +21,7 @@ function _startServer() {
   app.use(morgan('dev'));
 
   RouteManager.attach(app);
-  app.listen(3000, function() {
+  app.listen(8000, function() {
     console.log('Server started on 9999...');
   });
 }
