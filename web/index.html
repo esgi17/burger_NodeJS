@@ -1,23 +1,76 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> burger-test </title>
+<html lang="en">
 
-    </head>
-    <body>
-      <form action="http://localhost:8000/user/login" method="post">
-  <div>
-      <label>Username:</label>
-      <input type="text" name="username"/>
-  </div>
-  <div>
-      <label>Password:</label>
-      <input type="password" name="password"/>
-  </div>
-  <div>
-      <input type="submit" value="Log In"/>
-  </div>
-</form>
+  <head>
 
-    </body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bare - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/css/index.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <style>
+      body {
+        padding-top: 54px;
+      }
+      @media (min-width: 992px) {
+        body {
+          padding-top: 56px;
+        }
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Burger Project</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Admin</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div id="startOrder-form" class="col-lg-12 text-center">
+          <h1 class="mt-5">Cliquez pour commander</h1>
+          <button id="order-button" type="button" class="btn btn-primary btn-lg">Commander</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/js/api-ajax.js"></script>
+    <script src="vendor/js/index.js"></script>
+    <script src="vendor/js/event.js"></script>
+    <script src="vendor/js/dom.js"></script>
+
+
+  </body>
+
 </html>

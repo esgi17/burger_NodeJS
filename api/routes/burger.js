@@ -33,6 +33,7 @@ burgerRouter.get('/', function(req, res) {
     const name = req.query.name;
     BurgerController.getAll(name)
       .then( (burgers) => {
+          console.log("\n  APPEL \n");
           res.json(burgers);
       })
       .catch( (err) => {
