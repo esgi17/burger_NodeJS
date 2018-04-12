@@ -1,3 +1,4 @@
 module.exports = {
-    secret: 'my-super-secret'
+    secret: 'my-super-secret',
+    port: '8000'
 };

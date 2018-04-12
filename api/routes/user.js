@@ -8,6 +8,10 @@ const config = require('../config');
 const userRouter = express.Router();
 userRouter.use(bodyParser.json());
 
+/*
+* Route d'ajout d'un USER => Method : POST
+                          => Route : /user/add
+*/
 userRouter.post('/add', function(req, res) {
     const login = req.body.login;
     const password = req.body.password;
@@ -26,36 +30,43 @@ userRouter.post('/add', function(req, res) {
       });
 });
 
-
-
+/*
+* Route d'authentification d'un USER => Method : POST
+                          => Route : /user/authenticate
+*/
 userRouter.post('/authenticate', function(req, res) {
+    // On recupere le USER associé au login
     UserController.exist(req.body.login)
       .then( (user) => {
-        if(!user) {
-            res.status(400).json({
-                success: false,
-                message: 'Authentication failed. User not found' });
-            } else if(user) {
-                if( !UserController.verifyPassword(req.body.password, user.password)) {
-                    res.status(400).json({
-                        success: false,
-                        message: 'Authenfication failed. Wrong password'
-                    });
-                } else {
-                  const payload = {
-                      admin : user.admin
-                  };
-                  console.log(config);
-                  var token = jwt.sign(payload, config.secret);
-                  res.status(200).json({
-                      success: true,
-                      message: 'Token generated',
-                      token: token
+        // Si USER inexistant
+          if(!user) {
+              // Retour d'erreur
+              res.status(400).json({
+                  success: false,
+                  message: 'Authentication failed. User not found' });
+          } else if(user) { // Si USER existe
+              // On vérifie le mot de passe associé
+              if( !UserController.verifyPassword(req.body.password, user.password)) {
+                  // Si pwd incorrect, retour erreur
+                  res.status(400).json({
+                      success: false,
+                      message: 'Authenfication failed. Wrong password'
                   });
-                }
+              } else {
+                // Sinon on crée le token et on le retourne
+                const payload = {
+                    admin : user.admin
+                };
+                var token = jwt.sign(payload, config.secret);
+                res.status(200).json({
+                    success: true,
+                    message: 'Token generated',
+                    token: token
+                });
               }
+            }
 
-        })
+        });
 });
 
 module.exports = userRouter;

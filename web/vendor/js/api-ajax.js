@@ -1,6 +1,11 @@
 var path_api = "http://localhost:8000/";
 var res;
 
+/*
+* Appel Ajax à l'API avec la method : post
+* @param1 <string> route : Route à interroger
+* @param2 <obj> data : datas à envoyer
+*/
 var post = function(route, data) {
     var url = path_api + route;
     $.ajax({
@@ -21,6 +26,11 @@ var post = function(route, data) {
     ;
 }
 
+/*
+* Appel Ajax à l'API avec la method : get
+* @param1 <string> route : Route à interroger
+* @param2 <obj> data : datas à envoyer
+*/
 function get(route, data) {
     var a;
     var url = path_api + route;
@@ -43,11 +53,8 @@ function get(route, data) {
       return a;
 }
 
+// Fonction d'execution de la requete et de retour des données
 var api = function ( route, method, data ) {
     var res = method(route,data);
-    return res;
-}
-
-var sendData = function() {
     return res;
 }

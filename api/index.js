@@ -1,6 +1,7 @@
 const express = require('express');
 const ModelIndex = require('./models');
 const RouteManager = require('./routes');
+const config = require('./config');
 
 ModelIndex
   .openDatabase()
@@ -12,10 +13,8 @@ ModelIndex
 // INTERNAL
 
 function _startServer() {
-
   const app = express();
   app.use(function (req, res, next) {
-
         // Website you wish to allow to connect
         res.setHeader('Access-Control-Allow-Origin', '*');
 
@@ -32,9 +31,9 @@ function _startServer() {
         // Pass to next layer of middleware
         next();
     });
-  RouteManager.attach(app);
 
-  app.listen(8000, function() {
-    console.log('Server started on 8000...');
-  });
+    RouteManager.attach(app);
+    app.listen(config.port, function() {
+        console.log(`Server started on ${config.port}...`);
+    });
 }

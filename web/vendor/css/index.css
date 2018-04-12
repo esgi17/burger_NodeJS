@@ -1,13 +1,16 @@
+/***** ORDER *****/
 #startOrder-form { margin-top : 25%;}
 #order-button { margin-top : 50px; }
 
+/***** TABLE *****/
 .list { display: table-cell;  text-align: center; }
 .list ul{ list-style: none; padding: 0; margin: 0;}
 #product-table { table-layout: fixed; }
 #product-title { text-align: center; }
 
+/***** FORM LOGIN *****/
+.form-group { text-align: center;}
 #login-title { text-align: center; margin-top: 200px;}
 #login-box { margin: auto; margin-top : 50px; width : 400px; text-align: center; padding: 20px;}
-.form-group { text-align: center;}
 #login-form input { border-radius: 5px;width: 300px; margin: auto; margin-top : 10px; }
 #login-form button { width : 200px; height: 40px; margin-top : 30px;}
