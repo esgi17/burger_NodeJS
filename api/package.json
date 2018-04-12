@@ -1,0 +1,26 @@
+{
+  "name": "burger_nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon burger_nodejs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esgi17/burger_NodeJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/esgi17/burger_NodeJS/issues"
+  },
+  "homepage": "https://github.com/esgi17/burger_NodeJS#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mysql2": "^1.5.3",
+    "nodemon": "^1.17.3",
+    "sequelize": "^4.37.3"
+  }
+}
