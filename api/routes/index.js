@@ -4,6 +4,7 @@ const RouteManager = function() { };
 * Recuperation des routes
 **/
 RouteManager.attach = function(app) {
+    app.use('/static', require('./static'));
     app.use('/burger', require('./burger'));
     app.use('/drink', require('./drink'));
     app.use('/size', require('./size'));

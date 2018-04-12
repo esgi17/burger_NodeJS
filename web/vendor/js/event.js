@@ -6,7 +6,7 @@ $(window).ready( function() {
 
     // EVENT : Quand le tableau est créé, on le construit
     $('#product-table').ready(buildTable());
-
+    /*
     // EVENT : Quand le formulaire est validé = vérifications
     $('#login-form').validate({
         rules: {
@@ -25,6 +25,7 @@ $(window).ready( function() {
 
         }
     })
+    */
 });
 
 /*
@@ -55,6 +56,7 @@ function getBurgers() {
           route: 'burger',
           method: get
       });
+      burgers.image = getBurgerImg();
       return burgers;
 }
 
@@ -80,11 +82,17 @@ function getFries() {
       return fries;
 }
 
+function getBurgerImg() {
+    var img = getData({
+        route: 'static/images/burger.jpg',
+        method: get
+    })
+    return img;
+}
 /*
 * Recuperation des données et construction du tableau avec les données
 */
 function buildTable() {
-
     // récupération des données
     const categories = getCategories();
     const burgers = getBurgers();
@@ -95,7 +103,7 @@ function buildTable() {
         drinks : drinks,
         fries : fries
     }
-
+    console.log(burgers);
     // Construction du DOM et insertion des données
     var td = document.createElement('td');
 

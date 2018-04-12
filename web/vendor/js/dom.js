@@ -18,7 +18,7 @@ function displayElements(html, data) {
             return data[el][key];
         });
         for( var val in values ) {
-            html[el].parent.append(html[el].child).append(`<p>${values[val].name}</p>`);
+            html[el].parent.append(html[el].child).append(`<div class="item-card"><h3>${values[val].name}</h3><img src="data:image/jpg;base64,${values[val].image}"></div>`);
         }
     }
 }
