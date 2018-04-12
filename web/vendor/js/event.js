@@ -6,6 +6,23 @@ $(window).ready( function() {
 
     $('#product-table').ready(buildTable())
 
+    $('#login-form').validate({
+        rules: {
+            login: "required",
+            password: "required",
+            minlength: 6
+        },
+        messages: {
+            login: "Login is required !",
+            password: {
+                required: "Password is required !",
+                minlength: "Password must be at least 6 characters long"
+            }
+        },
+        submitHandle: function(form) {
+            
+        }
+    })
 });
 
 function getData(obj) {
