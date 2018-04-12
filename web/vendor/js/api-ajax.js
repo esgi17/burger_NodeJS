@@ -1,9 +1,11 @@
 var path_api = "http://localhost:8000/";
+var res;
 
 var post = function(route, data) {
     var url = path_api + route;
     $.ajax({
         url: url,
+        crossDomain: true,
         method: "POST",
         data: data
     })
@@ -19,21 +21,33 @@ var post = function(route, data) {
     ;
 }
 
-function get(route, func,data) {
+function get(route, data) {
+    var a;
     var url = path_api + route;
     $.ajax({
         url : url,
+        crossDomain: true,
         method: "GET",
+        async: false,
         data: data
     })
       .done( function(res, err) {
-          func(res);
+          a = res;
       })
       .fail( function(err) {
-          return false;
+          console.error(err);
+      })
+      .always( function(res) {
+
       });
+      return a;
 }
 
-var api = function (route, f, f2,data  ) {
-    return(f(route, f2,data));
+var api = function ( route, method, data ) {
+    var res = method(route,data);
+    return res;
+}
+
+var sendData = function() {
+    return res;
 }

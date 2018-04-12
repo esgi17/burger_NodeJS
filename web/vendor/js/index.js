@@ -3,6 +3,26 @@ function startOrder() {
     orderScreen();
 }
 
+function displayElements(html, data) {
+    // Tranformer les objets en tableaux d'objets
+    var html = Object.keys(html).map(function(key) {
+        return html[key];
+    });
+
+    var data = Object.keys(data).map(function(key) {
+        return data[key];
+    });
+
+    for( var el in html ) {
+        var values = Object.keys(data[el]).map(function(key) {
+            return data[el][key];
+        });
+        for( var val in values ) {
+            html[el].parent.append(html[el].child).append(`<p>${values[val].name}</p>`);
+        }
+    }
+}
+
 function displayCategory(data) {
     var categories = Object.keys(data).map(function(key) {
         return data[key];
@@ -13,11 +33,9 @@ function displayCategory(data) {
 }
 
 function displayProductLists(data) {
-  console.log("TEST");
   var categories = Object.keys(data).map(function(key) {
       return data[key];
-  })
-  console.log(categories);
+  });
   for( var category in categories ) {
       $('#product-lists').append(`<td class='list' id='list-${categories[category].name}'> </td>`);
   }
@@ -26,7 +44,7 @@ function displayProductLists(data) {
 function displayBurger(data) {
     var burgers = Object.keys(data).map(function(key) {
         return data[key];
-    })
+    });
     for( var burger in burgers ) {
         $('#list-burger ul').append(`<li> ${burgers[burger].name} </li>`);
     }
@@ -46,6 +64,7 @@ function displayFries(data) {
         return data[key];
     })
     for( var frie in fries ) {
+
         $('#list-fries ul').append(`<li> ${fries[frie].name} </li>`);
     }
 }

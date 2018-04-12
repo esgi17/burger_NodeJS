@@ -4,60 +4,81 @@ $(window).ready( function() {
         startOrder();
     });
 
-    $('#product-title').ready(checkContainer($('#product-title'), {
-        func: api,
-        method: get,
-        route: 'category',
-        displayMethod: displayCategory
-    }));
+    $('#product-table').ready(buildTable())
 
-    $('#product-lists').ready(checkContainer($('#product-lists'), {
-      func: api,
-      method: get,
-      route: 'category',
-      displayMethod: displayProductLists
-    }));
-
-    $('#list-burger').ready(checkContainer($('#list-burger'), {
-        func: api,
-        method: get,
-        route: 'burger',
-        displayMethod: displayBurger
-    }));
-
-    $('#list-drink').ready(checkContainer($('#list-drink'), {
-        func: api,
-        method: get,
-        route: 'drink',
-        displayMethod: displayDrink
-    }));
-
-    $('#list-fries').ready(checkContainer($('#list-fries'), {
-        func: api,
-        method: get,
-        route: 'fries',
-        displayMethod: displayFries
-    }));
-
-    $('#list-meal').ready(checkContainer($('#list-meal'), {
-        func: api,
-        method: get,
-        route: 'meal',
-        displayMethod: displayMeal
-    }));
-
-    $('#list-afters').ready(checkContainer($('#list-afters'), {
-        func: api,
-        method: get,
-        route: 'afters',
-        displayMethod: displayAfters
-    }));
 });
 
-function checkContainer (el, obj) {
-  if(el.is(':visible')){ //if the container is visible on the page
-    obj.func(obj.route, obj.method, obj.displayMethod);
-  } else {
-    setTimeout(checkContainer, 50); //wait 50 ms, then try again
-  }
+function getData(obj) {
+    var res = api(obj.route, obj.method);
+
+    return res;
+}
+
+function getCategories() {
+      var categories = getData({
+          route: 'category',
+          method: get
+      });
+      return categories;
+}
+
+function getBurgers() {
+      var burgers = getData({
+          route: 'burger',
+          method: get
+      });
+      return burgers;
+}
+
+function getDrinks() {
+      var drinks = getData({
+          route: 'drink',
+          method: get
+      });
+      return drinks;
+}
+
+function getFries() {
+      var fries = getData({
+          route: 'fries',
+          method: get
+      });
+      return fries;
+}
+
+function buildTable() {
+    // récupération des données
+    const categories = getCategories();
+    displayCategory(categories);
+
+    const burgers = getBurgers();
+    const drinks = getDrinks();
+    const fries = getFries();
+
+    const data = {
+        burgers : burgers,
+        drinks : drinks,
+        fries : fries
+    }
+
+    var td = document.createElement('td');
+    // Construction du DOM
+    displayElements({
+
+        burgers : {
+            parent: $('#list-burger'),
+            child: td
+        },
+        drinks : {
+            parent: $('#list-drink'),
+            child: td
+        },
+        fries : {
+            parent: $('#list-fries'),
+            child: td
+        }
+    }, data);
+
+    // Insertion des données
+
 }
