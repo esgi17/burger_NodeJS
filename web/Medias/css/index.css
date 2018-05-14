@@ -1,0 +1,122 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+
+body {
+  overflow-x: hidden;
+}
+
+.action-button {
+    margin : 20px;
+    width : 300px;
+    height : 45px;
+}
+
+.list-items {
+    width : 200px;
+}
+
+#modal {
+    text-align: center;
+    display: none;
+    margin-left : 20%;
+    margin-top : 5%;
+    position : absolute;
+    background-color: #ecf0f1;
+    width : 60%;
+    height : 60%;
+}
+
+#modal-title {
+    text-align: center;
+    text-transform: uppercase;
+    margin-top : 30px;
+}
+
+#modal-img {
+  width : 50%;
+  height: 80%;
+  margin-left: 10px;
+  margin-top : 50px;
+}
+
+#form-quantity {
+    text-align: center;
+    margin-top: 30%;
+    margin-left: 25%;
+}
+
+#form-quantity p {
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-right: 30px;
+}
+
+#form-quantity div {
+    text-align: center;
+    margin : 5px;
+    height : 35px;
+    width : 35px;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+#wrapper {
+  padding-left: 0;
+
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+}
+
+
+#container {
+  width: 100%;
+  position: absolute;
+  padding: 15px;
+}
+
+#container-order {
+   padding: 30px;
+   text-align: center;
+}
+
+.item {
+    cursor: pointer;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
+}
+
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-left: 0;
+  }
+  #wrapper.toggled {
+    padding-left: 250px;
+  }
+  #wrapper.toggled {
+    width: 250px;
+  }
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
