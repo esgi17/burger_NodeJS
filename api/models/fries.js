@@ -12,6 +12,10 @@ module.exports = function (sequelize, DataTypes) {
         price: {
             type: DataTypes.DOUBLE,
             allowNull: false
+        },
+        urlimg: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     }, {
         paranoid: true,
@@ -28,5 +32,8 @@ function _associate(models) {
   // Frites possède une taille
   models.Fries.belongsTo(models.Size, {
     as : 'size'
+  });
+  models.Fries.hasMany(models.Meal, {
+    as: 'meal'
   });
 }
