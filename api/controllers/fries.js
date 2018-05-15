@@ -17,12 +17,6 @@ FriesController.add = function(name, price, size_id, urlimg) {
 }
 
 /**
-*   Récupération du prix
-**/
-FriesController.getPrice = function(id){
-  return Fries.findById(id);
-}
-/**
 *  Récupération des élements en base
 **/
 FriesController.getAll = function(search, size_id) {
@@ -62,6 +56,11 @@ FriesController.del = function(search){
   return Fries.destroy(options);
 }
 
+
+
+/**
+*   Récupération
+**/
 FriesController.find = function(id){
   return Fries.findById(id);
 }

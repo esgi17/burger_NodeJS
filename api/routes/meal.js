@@ -102,21 +102,25 @@ mealRouter.post('/', function(req, res) {
     var burgerprice = undefined;
     var price = undefined;
 
-    BurgerController.getPrice(parseInt(burger_id))
+    BurgerController.find(parseInt(burger_id))
       .then((burger) => {
         burgerprice = burger.price;
       })
 
-    FriesController.getPrice(parseInt(fries_id))
+    FriesController.find(parseInt(fries_id))
       .then((fries) => {
         friesprice = fries.price;
       })
 
-    DrinkController.getPrice(parseInt(drink_id))
+    DrinkController.find(parseInt(drink_id))
       .then( (drink) => {
         price = (drink.price + friesprice)*discount + burgerprice ;
         if( name === undefined || discount === undefined || burger_id === undefined || drink_id === undefined|| fries_id === undefined || price === undefined) {
+<<<<<<< HEAD
             res.status(403).json('Date missing').end();
+=======
+            res.status(400).json("Data missing").end();
+>>>>>>> 11f4113c97bf8b14fd948ba54fe1bcaac44a91ba
             return;
         }
         MealController.add(name, discount, parseInt(burger_id), parseInt(drink_id), parseInt(fries_id), parseFloat(price))
@@ -128,6 +132,8 @@ mealRouter.post('/', function(req, res) {
           });
       }).catch( (err) => {
           console.error(err);
+          res.status(400).json("Data missing").end();
+          return;
       })
 });
 

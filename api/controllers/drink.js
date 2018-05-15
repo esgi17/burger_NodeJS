@@ -16,12 +16,6 @@ DrinkController.add = function(name, price, size_id, urlimg) {
     });
 }
 
-/**
-*   Récupération du prix
-**/
-DrinkController.getPrice = function(id){
-  return Drink.findById(id);
-}
 
 /**
 *  Récupération des élements en base
@@ -63,6 +57,10 @@ DrinkController.del = function(search){
   return Drink.destroy(options);
 }
 
+
+/**
+*   Récupération
+**/
 DrinkController.find = function(id){
   return Drink.findById(id);
 }
