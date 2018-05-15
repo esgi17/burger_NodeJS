@@ -117,10 +117,14 @@ mealRouter.post('/', function(req, res) {
         price = (drink.price + friesprice)*discount + burgerprice ;
         if( name === undefined || discount === undefined || burger_id === undefined || drink_id === undefined|| fries_id === undefined || price === undefined) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             res.status(403).json('Date missing').end();
 =======
             res.status(400).json("Data missing").end();
 >>>>>>> 11f4113c97bf8b14fd948ba54fe1bcaac44a91ba
+=======
+            res.status(403).json('Date missing').end();
+>>>>>>> feature_auth
             return;
         }
         MealController.add(name, discount, parseInt(burger_id), parseInt(drink_id), parseInt(fries_id), parseFloat(price))

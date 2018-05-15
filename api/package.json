@@ -19,9 +19,19 @@
   "homepage": "https://github.com/esgi17/burger_NodeJS#readme",
   "dependencies": {
     "apidoc": "^0.17.6",
+<<<<<<< HEAD:api/package.json
+=======
+    "body-parser": "^1.18.3",
+>>>>>>> feature_auth:api/package.json
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "morgan": "^1.9.0",
     "mysql2": "^1.5.3",
+<<<<<<< HEAD:api/package.json
     "nodemon": "^1.17.3",
+=======
+    "password-hash": "^1.2.2",
+>>>>>>> feature_auth:api/package.json
     "sequelize": "^4.37.3"
   }
 }
