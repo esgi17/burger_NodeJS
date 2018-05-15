@@ -7,9 +7,9 @@ const SizeController = function() { };
 /**
 *  Creation d'un element en base
 **/
-SizeController.add = function(libelle, price_add) {
+SizeController.add = function(name, price_add) {
     return Size.create({
-        libelle: libelle,
+        name: name,
         price_add: price_add
     });
 };

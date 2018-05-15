@@ -6,8 +6,27 @@ const SizeController = controllers.SizeController;
 const sizeRouter = express.Router();
 sizeRouter.use(bodyParser.json());
 
-/*
-* Route de récupération des données
+/**
+* @api {get} /Size get Size
+* @apiGroup size
+* @apiParam {name} name Size name
+* @apiSuccess {Object[]} Size
+* @apiSuccess {Number} Size.id Size id
+* @apiSuccess {String} Size.name Size name
+* @apiSuccess {Float} Size.price_add Task price_add
+* @apiSuccess {Date} Size.updated_at Update's date
+* @apiSuccess {Date} Size.created_at Register's date
+* @apiSuccessExample {json} Success
+*    HTTP/1.1 201 OK
+*    [{
+*      "id": 1,
+*      "name": "Fat",
+*      "price_add": 0.90
+*      "updated_at": "2018-05-14T00:00:00.000Z",
+*      "created_at": "2018-05-14T00:00:00.000Z"
+*    }]
+* @apiErrorExample
+*    HTTP/1.1 500 Internal Server Error
 */
 sizeRouter.get('/', function(req, res) {
   const name = req.query.name;
@@ -21,17 +40,42 @@ sizeRouter.get('/', function(req, res) {
     });
 });
 
-/*
-* Route d'ajout de données
+/**
+* @api {post} /Size add Size
+* @apiGroup size
+* @apiParam {name} name Size name
+* @apiParam {price_add} price_add Size price_add
+* @apiParamExample {json} Input
+*    {
+*      "name": "Fat",
+*      "price_add": 0.90
+*    }
+* @apiSuccess {Object[]} Size
+* @apiSuccess {Number} Size.id Size id
+* @apiSuccess {String} Size.name Size name
+* @apiSuccess {Float} Size.price_add Task price_add
+* @apiSuccess {Date} Size.updated_at Update's date
+* @apiSuccess {Date} Size.created_at Register's date
+* @apiSuccessExample {json} Success
+*    HTTP/1.1 201 OK
+*    [{
+*      "id": 1,
+*      "name": "Fat",
+*      "price_add": 0.90
+*      "updated_at": "2018-05-14T00:00:00.000Z",
+*      "created_at": "2018-05-14T00:00:00.000Z"
+*    }]
+* @apiErrorExample
+*    HTTP/1.1 500 Internal Server Error
 */
 sizeRouter.post('/', function(req, res) {
-  const libelle = req.body.libelle;
+  const name = req.body.name;
   const price_add = req.body.price_add;
-  if( libelle === undefined || price_add === undefined ) {
+  if( name === undefined || price_add === undefined ) {
       res.status(400).end();
       return;
   }
-  SizeController.add(libelle, price_add)
+  SizeController.add(name, price_add)
     .then( (size) => {
         res.status(201).json(size);
     })
