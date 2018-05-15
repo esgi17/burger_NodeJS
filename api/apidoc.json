@@ -1,0 +1,8 @@
+{
+    "name": "Burger API documentation",
+    "version": "1.0.0",
+    "description": "API doc",
+    "template": {
+        "forceLanguage": "en"
+    }
+}

@@ -6,9 +6,29 @@ const FriesController = controllers.FriesController;
 const friesRouter = express.Router();
 friesRouter.use(bodyParser.json());
 
-/*
-* Route de récupération des données
+/**
+* @api {get} /Fries get Fries
+* @apiGroup fries
+* @apiParam {name} name Fries name
+* @apiSuccess {Object[]} Fries
+* @apiSuccess {Number} Fries.id Fries id
+* @apiSuccess {String} Fries.name Fries name
+* @apiSuccess {Float} Fries.price Task price
+* @apiSuccess {Date} Fries.updated_at Update's date
+* @apiSuccess {Date} Fries.created_at Register's date
+* @apiSuccessExample {json} Success
+*    HTTP/1.1 201 OK
+*    [{
+*      "id": 1,
+*      "name": "Potatoes",
+*      "price": 2.70
+*      "updated_at": "2018-05-14T00:00:00.000Z",
+*      "created_at": "2018-05-14T00:00:00.000Z"
+*    }]
+* @apiErrorExample
+*    HTTP/1.1 500 Internal Server Error
 */
+
 friesRouter.get('/', function(req,res) {
     // Code
     const name = req.query.name;
@@ -24,17 +44,42 @@ friesRouter.get('/', function(req,res) {
       });
 });
 
-/*
-* Route d'ajout de données
+/**
+* @api {post} /Fries add Fries
+* @apiGroup fries
+* @apiParam {name} name Fries name
+* @apiParam {price} price Fries price
+* @apiParamExample {json} Input
+*    {
+*      "name": "Potatoes",
+*      "price": 2.70
+*    }
+* @apiSuccess {Object[]} Fries
+* @apiSuccess {Number} Fries.id Fries id
+* @apiSuccess {String} Fries.name Fries name
+* @apiSuccess {Float} Fries.price Task price
+* @apiSuccess {Date} Fries.updated_at Update's date
+* @apiSuccess {Date} Fries.created_at Register's date
+* @apiSuccessExample {json} Success
+*    HTTP/1.1 201 OK
+*    [{
+*      "id": 1,
+*      "name": "Potatoes",
+*      "price": 1.80
+*      "updated_at": "2018-05-14T00:00:00.000Z",
+*      "created_at": "2018-05-14T00:00:00.000Z"
+*    }]
+* @apiErrorExample
+*    HTTP/1.1 500 Internal Server Error
 */
+
 friesRouter.post('/', function(req,res) {
     // Code
     const name = req.body.name;
     const price = req.body.price;
     const size_id = req.body.size_id;
     if( name === undefined || price === undefined || size_id === undefined ) {
-        console.log(name +" "+ price +" " + size_id);
-        res.status(400).end();
+        res.status(400).json('Name or price or size_id undefined').end();
         return;
     }
     FriesController.add(name, parseFloat(price), parseFloat(size_id))
