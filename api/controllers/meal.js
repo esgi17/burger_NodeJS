@@ -30,7 +30,7 @@ MealController.getAll = function (search) {
         as : 'drink'
       },
       {
-        model: ModelIndex.Burger,
+        model: ModelIndex.Meal,
         as : 'burger'
       },
       {
@@ -47,6 +47,26 @@ MealController.getAll = function (search) {
     options.where = where;
     return Meal.findAll(options);
 };
+
+/**
+*   Suppression d'un élément par id
+**/
+MealController.del = function(search){
+  const options = {};
+  const where = {};
+  if (search !== undefined){
+    where.id = {
+      [Op.eq]: search
+    };
+  }
+  options.where = where;
+  return Meal.destroy(options);
+}
+
+MealController.find = function(id){
+  return Meal.findById(id);
+}
+
 
 // Export du controller
 module.exports = MealController;

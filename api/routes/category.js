@@ -21,5 +21,28 @@ categoryRouter.get('/', function(req, res) {
       })
 });
 
+/**
+*   Route de Suppression des données
+**/
+categoryRouter.delete('/', function(req, res){
+  const id = req.query.id;
+  CategoryController.find(id)
+    .then((user) => {
+      if (user){
+
+      CategoryController.del(id)
+        .then((p) => {
+            res.status(200).json("Category deleted");
+        });
+      }else{
+          res.status(403).json("Category not found")
+      }
+    })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).end();
+        });
+});
+
 
 module.exports = categoryRouter;

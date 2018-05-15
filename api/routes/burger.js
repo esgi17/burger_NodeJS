@@ -79,13 +79,32 @@ burgerRouter.get('/', function(req, res) {
     const name = req.query.name;
     BurgerController.getAll(name)
       .then( (burgers) => {
-          console.log("\n  APPEL \n");
           res.json(burgers);
       })
       .catch( (err) => {
           console.error(err);
           res.status(500).end();
       })
+});
+
+burgerRouter.delete('/', function(req, res){
+  const id = req.query.id;
+  BurgerController.find(id)
+    .then((user) => {
+      if (user){
+
+      BurgerController.del(id)
+        .then((p) => {
+            res.status(200).json("Burger deleted");
+        });
+      }else{
+          res.status(403).json("Burger not found")
+      }
+    })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).end();
+        });
 });
 
 

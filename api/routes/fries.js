@@ -92,5 +92,29 @@ friesRouter.post('/', function(req,res) {
 });
 
 
+/**
+*   Route de Suppression des données
+**/
+friesRouter.delete('/', function(req, res){
+  const id = req.query.id;
+  FriesController.find(id)
+    .then((user) => {
+      if (user){
+
+      FriesController.del(id)
+        .then((p) => {
+            res.status(200).json("Fries deleted");
+        });
+      }else{
+          res.status(403).json("Fries not found")
+      }
+    })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).end();
+        });
+});
+
+
 
 module.exports = friesRouter;

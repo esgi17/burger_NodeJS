@@ -47,5 +47,25 @@ FriesController.getAll = function(search, size_id) {
     return Fries.findAll(options);
 }
 
+/**
+*   Suppression d'un élément par id
+**/
+FriesController.del = function(search){
+  const options = {};
+  const where = {};
+  if (search !== undefined){
+    where.id = {
+      [Op.eq]: search
+    };
+  }
+  options.where = where;
+  return Fries.destroy(options);
+}
+
+FriesController.find = function(id){
+  return Fries.findById(id);
+}
+
+
 // Export du controller
 module.exports = FriesController;

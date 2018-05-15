@@ -30,5 +30,25 @@ SizeController.getAll = function(search) {
     return Size.findAll(options);
 }
 
+/**
+*   Suppression d'un élément par id
+**/
+SizeController.del = function(search){
+  const options = {};
+  const where = {};
+  if (search !== undefined){
+    where.id = {
+      [Op.eq]: search
+    };
+  }
+  options.where = where;
+  return Size.destroy(options);
+}
+
+SizeController.find = function(id){
+  return Size.findById(id);
+}
+
+
 // Export du controller
 module.exports = SizeController;

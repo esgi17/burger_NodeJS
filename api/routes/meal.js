@@ -67,4 +67,28 @@ mealRouter.get('/', function(req, res) {
       });
 });
 
+
+/**
+*   Route de Suppression des données
+**/
+mealRouter.delete('/', function(req, res){
+  const id = req.query.id;
+  MealController.find(id)
+    .then((user) => {
+      if (user){
+
+      MealController.del(id)
+        .then((p) => {
+            res.status(200).json("Meal deleted");
+        });
+      }else{
+          res.status(403).json("Meal not found")
+      }
+    })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).end();
+        });
+});
+
 module.exports = mealRouter;

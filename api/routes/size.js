@@ -85,4 +85,28 @@ sizeRouter.post('/', function(req, res) {
     });
 });
 
+
+/**
+*   Route de Suppression des données
+**/
+sizeRouter.delete('/', function(req, res){
+  const id = req.query.id;
+  SizeController.find(id)
+    .then((user) => {
+      if (user){
+
+      SizeController.del(id)
+        .then((p) => {
+            res.status(200).json("Size deleted");
+        });
+      }else{
+          res.status(403).json("Size not found")
+      }
+    })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).end();
+        });
+});
+
 module.exports = sizeRouter;

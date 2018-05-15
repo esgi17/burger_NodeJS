@@ -11,5 +11,25 @@ CategoryController.getAll = function () {
     return Category.findAll();
 };
 
+
+/**
+*   Suppression d'un élément par id
+**/
+CategoryController.del = function(search){
+  const options = {};
+  const where = {};
+  if (search !== undefined){
+    where.id = {
+      [Op.eq]: search
+    };
+  }
+  options.where = where;
+  return Category.destroy(options);
+}
+
+CategoryController.find = function(id){
+  return Category.findById(id);
+}
+
 // Export du controller
 module.exports = CategoryController;

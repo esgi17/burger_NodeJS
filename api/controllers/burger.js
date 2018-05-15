@@ -23,6 +23,9 @@ BurgerController.getPrice = function(id){
   return Burger.findById(id);
 }
 
+BurgerController.find = function(id){
+  return Burger.findById(id);
+}
 /**
 *  Récupération des élements en base
 **/
@@ -38,6 +41,22 @@ BurgerController.getAll = function (search) {
     options.where = where;
     return Burger.findAll(options);
 };
+
+/**
+*   Suppression d'un élément par id
+**/
+BurgerController.del = function(search){
+  const options = {};
+  const where = {};
+  if (search !== undefined){
+    where.id = {
+      [Op.eq]: search
+    };
+  }
+  options.where = where;
+  return Burger.destroy(options);
+}
+
 
 // Export du controller
 module.exports = BurgerController;

@@ -48,5 +48,25 @@ DrinkController.getAll = function(search, size_id) {
     return Drink.findAll(options);
 }
 
+/**
+*   Suppression d'un élément par id
+**/
+DrinkController.del = function(search){
+  const options = {};
+  const where = {};
+  if (search !== undefined){
+    where.id = {
+      [Op.eq]: search
+    };
+  }
+  options.where = where;
+  return Drink.destroy(options);
+}
+
+DrinkController.find = function(id){
+  return Drink.findById(id);
+}
+
+
 // Export du controller
 module.exports = DrinkController;
