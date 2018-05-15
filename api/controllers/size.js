@@ -7,9 +7,9 @@ const SizeController = function() { };
 /**
 *  Creation d'un element en base
 **/
-SizeController.add = function(libelle, price_add) {
+SizeController.add = function(name, price_add) {
     return Size.create({
-        libelle: libelle,
+        name: name,
         price_add: price_add
     });
 };
@@ -29,6 +29,26 @@ SizeController.getAll = function(search) {
     options.where = where;
     return Size.findAll(options);
 }
+
+/**
+*   Suppression d'un élément par id
+**/
+SizeController.del = function(search){
+  const options = {};
+  const where = {};
+  if (search !== undefined){
+    where.id = {
+      [Op.eq]: search
+    };
+  }
+  options.where = where;
+  return Size.destroy(options);
+}
+
+SizeController.find = function(id){
+  return Size.findById(id);
+}
+
 
 // Export du controller
 module.exports = SizeController;

@@ -2,18 +2,39 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const controllers = require('../controllers');
 const FriesController = controllers.FriesController;
-const UserController = controllers.UserController;
 
 const friesRouter = express.Router();
 friesRouter.use(bodyParser.json());
 
-/*
-* Route de récupération des données
+/**
+* @api {get} /Fries get Fries
+* @apiGroup fries
+* @apiParam {name} name Fries name
+* @apiSuccess {Object[]} Fries
+* @apiSuccess {Number} Fries.id Fries id
+* @apiSuccess {String} Fries.name Fries name
+* @apiSuccess {Float} Fries.price Fries price
+* @apiSuccess {Date} Fries.updated_at Update's date
+* @apiSuccess {Date} Fries.created_at Register's date
+* @apiSuccessExample {json} Success
+*    HTTP/1.1 201 OK
+*    [{
+*      "id": 1,
+*      "name": "Potatoes",
+*      "price": 2.70
+*      "updated_at": "2018-05-14T00:00:00.000Z",
+*      "created_at": "2018-05-14T00:00:00.000Z"
+*    }]
+* @apiErrorExample
+*    HTTP/1.1 500 Internal Server Error
 */
+
 friesRouter.get('/', function(req,res) {
     // Code
     const name = req.query.name;
-    FriesController.getAll(name)
+    const size = req.query.size
+
+    FriesController.getAll(name, size)
       .then( (fries) => {
           res.status(201).json(fries);
       })
@@ -23,35 +44,42 @@ friesRouter.get('/', function(req,res) {
       });
 });
 
-/*
-* MiddleWare de récupération de Token
+/**
+* @api {post} /Fries add Fries
+* @apiGroup fries
+* @apiParam {name} name Fries name
+* @apiParam {price} price Fries price
+* @apiParamExample {json} Input
+*    {
+*      "name": "Potatoes",
+*      "price": 2.70
+*    }
+* @apiSuccess {Object[]} Fries
+* @apiSuccess {Number} Fries.id Fries id
+* @apiSuccess {String} Fries.name Fries name
+* @apiSuccess {Float} Fries.price Fries price
+* @apiSuccess {Date} Fries.updated_at Update's date
+* @apiSuccess {Date} Fries.created_at Register's date
+* @apiSuccessExample {json} Success
+*    HTTP/1.1 201 OK
+*    [{
+*      "id": 1,
+*      "name": "Potatoes",
+*      "price": 1.80
+*      "updated_at": "2018-05-14T00:00:00.000Z",
+*      "created_at": "2018-05-14T00:00:00.000Z"
+*    }]
+* @apiErrorExample
+*    HTTP/1.1 500 Internal Server Error
 */
-friesRouter.use(function(req, res, next) {
-  // check header or url parameters or post parameters for token
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
-  console.log(token);
-  // decode token
-  if (UserController.checkToken(token)) {
-      next();
-  } else {
-    return res.status(403).send({
-        success: false,
-        message: 'No token or bad token provided.'
-    });
-  }
-});
 
-/*
-* Route d'ajout de données
-*/
 friesRouter.post('/', function(req,res) {
     // Code
     const name = req.body.name;
     const price = req.body.price;
     const size_id = req.body.size_id;
     if( name === undefined || price === undefined || size_id === undefined ) {
-        console.log(name +" "+ price +" " + size_id);
-        res.status(400).end();
+        res.status(400).json('Name or price or size_id undefined').end();
         return;
     }
     FriesController.add(name, parseFloat(price), parseFloat(size_id))
@@ -62,5 +90,40 @@ friesRouter.post('/', function(req,res) {
           res.status(500).end();
       });
 });
+
+
+/**
+ * @api {delete} /fries/:id Remove Fries
+ * @apiGroup fries
+ * @apiParam {id} id Fries id
+ * @apiSuccessExample
+ *    HTTP/1.1 200 Fries deleted
+ * @apiErrorExample
+ *    HTTP/1.1 500 Internal Server Error
+ * @apiErrorExample
+ *    HTTP/1.1 403 Fries not found
+ */
+
+friesRouter.delete('/', function(req, res){
+  const id = req.query.id;
+  FriesController.find(id)
+    .then((user) => {
+      if (user){
+
+      FriesController.del(id)
+        .then((p) => {
+            res.status(200).json("Fries deleted");
+        });
+      }else{
+          res.status(403).json("Fries not found")
+      }
+    })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).end();
+        });
+});
+
+
 
 module.exports = friesRouter;

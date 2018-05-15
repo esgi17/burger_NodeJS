@@ -12,18 +12,24 @@ module.exports = function (sequelize, DataTypes) {
         price: {
             type: DataTypes.DOUBLE,
             allowNull: false
+        },
+        urlimg: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     }, {
         paranoid: true,
         underscored: true,
         freezeTableName: true
     });
-  //  Burger.associate = _associate;
     return Burger;
 };
 
 // INTERNAL
 
 function _associate(models) {
-  // Associations
+  // Drink possède une taille
+  models.Burger.hasMany(models.Meal, {
+    as: 'meal'
+  });
 }
