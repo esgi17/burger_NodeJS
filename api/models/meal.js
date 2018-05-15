@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    const Fries = sequelize.define('Fries', {
+    const Meal = sequelize.define('Meal', {
         id: {
             type: DataTypes.BIGINT,
             primaryKey: true,
@@ -9,12 +9,12 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        price: {
-            type: DataTypes.DOUBLE,
+        discount: {
+            type: DataTypes.FLOAT,
             allowNull: false
         },
-        urlimg: {
-            type: DataTypes.STRING,
+        price: {
+            type: DataTypes.FLOAT,
             allowNull: false
         }
     }, {
@@ -22,18 +22,20 @@ module.exports = function (sequelize, DataTypes) {
         underscored: true,
         freezeTableName: true
     });
-    Fries.associate = _associate;
-    return Fries;
+    Meal.associate = _associate;
+    return Meal;
 };
 
 // INTERNAL
 
 function _associate(models) {
-  // Frites possède une taille
-  models.Fries.belongsTo(models.Size, {
-    as : 'size'
+  models.Meal.belongsTo(models.Burger, {
+    as: 'burger'
   });
-  models.Fries.hasMany(models.Meal, {
-    as: 'meal'
+  models.Meal.belongsTo(models.Drink, {
+    as: 'drink'
+  });
+  models.Meal.belongsTo(models.Fries, {
+    as: 'fries'
   });
 }

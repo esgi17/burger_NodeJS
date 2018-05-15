@@ -14,7 +14,6 @@ module.exports = function (sequelize, DataTypes) {
         underscored: true,
         freezeTableName: true
     });
-  //  Burger.associate = _associate;
     return Category;
 };
 

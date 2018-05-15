@@ -7,12 +7,21 @@ const BurgerController = function() { };
 /**
 *  Creation d'un element en base
 **/
-BurgerController.add = function(name, price) {
+BurgerController.add = function(name, price, urlimg) {
+
     return Burger.create({
         name: name,
-        price: price
+        price: price,
+        urlimg: "images/burger/" + name.replace(' ','_') + ".jpg"
     });
 };
+
+/**
+*   Récupération du prix
+**/
+BurgerController.getPrice = function(id){
+  return Burger.findById(id);
+}
 
 /**
 *  Récupération des élements en base

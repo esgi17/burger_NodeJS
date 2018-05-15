@@ -28,6 +28,7 @@ app.api = {
             crossDomain: true
         })
         .done( function(res) {
+            console.log("TAMERE");
             method(res, route);
         })
         .fail( function(err) {

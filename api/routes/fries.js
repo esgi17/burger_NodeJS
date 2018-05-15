@@ -12,7 +12,9 @@ friesRouter.use(bodyParser.json());
 friesRouter.get('/', function(req,res) {
     // Code
     const name = req.query.name;
-    FriesController.getAll(name)
+    const size = req.query.size
+
+    FriesController.getAll(name, size)
       .then( (fries) => {
           res.status(201).json(fries);
       })

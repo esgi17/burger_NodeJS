@@ -22,8 +22,8 @@ app.order = {
     },
 
     initCategory : (datas, route) => {
-      console.log("1");
         app.order.items.categories = datas;
+        console.log("1");
 
         for( c in datas ) {
            app.order.loadItem(datas[c].name, app.order.displayItems);
@@ -40,6 +40,7 @@ app.order = {
            $(`#list-${route}`).append(`<div id="${nbItem}" class="item"><img src="${datas[item].image}"> </img><h3>${datas[item].name}<h3></div>`);
            app.order.items[nbItem] = datas[item];
            nbItem += 1;
+           console.log(nbItem);
         }
     },
 

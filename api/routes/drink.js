@@ -32,7 +32,9 @@ drinkRouter.post('/', function(req, res) {
 */
 drinkRouter.get('/', function(req, res) {
     const name = req.query.name;
-    DrinkController.getAll(name)
+    const size = req.query.size;
+
+    DrinkController.getAll(name, size) //, size
       .then( (drinks) => {
           res.json(drinks);
       })
