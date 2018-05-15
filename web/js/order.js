@@ -55,7 +55,7 @@ app.order = {
         });
     },
 
-    addItemOrder : (id, price, name, quantity) => {
+    addItemOrder : (id, price, name, quantity, size) => {
         app.order.obj['amount'] += price;
         console.log(quantity);
         var i = 0;
@@ -64,13 +64,26 @@ app.order = {
           app.order.obj[`${app.order.nbItemOrder}`] = {
               id : id,
               name : name,
-              price : price
+              price : price,
+              size : size
           }
+
           app.order.nbItemOrder += 1;
           i++;
         }
-
+        app.order.displayOrder();
         console.log(app.order.obj);
+    },
+
+    displayOrder : () => {
+        for( el in app.order.obj ) {
+            $("#order-content").append(`<div id="item-${el}" class="order-item"></div>`);
+            $(`#item-${el}`).append(`<p class="valName">${app.order.obj[el].name} </p>`)
+            $(`#item-${el}`).append(`<p class="valPrice">${app.order.obj[el].price} </p>`)
+            if( app.order.obj[el].size !== undefined)
+              $(`#item-${el}`).append(`<p class="valSize">${app.order.obj[el].size} </p>`)
+
+        }
     },
 
     items : [],

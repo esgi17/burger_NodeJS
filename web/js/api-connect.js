@@ -3,6 +3,7 @@ var app = app || {};
 app.api = {
     post : (route, data, method) => {
         var url = app.main.api + route;
+        console.log(url);
         $.ajax({
             url : url,
             type : 'post',
@@ -12,6 +13,7 @@ app.api = {
         })
         .done( function(res) {
             console.log(res);
+            method(res);
         })
         .fail( function(err) {
             console.error(err);

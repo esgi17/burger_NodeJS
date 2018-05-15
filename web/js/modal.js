@@ -34,11 +34,12 @@ app.modal = {
             var price = parseFloat($(".modal-price").text());
             var name = $("#modal-title").text();
             var quantity = parseInt($("#quantity").text());
+            var size = $(".modal-size").text();
             if( price === undefined || name === undefined || quantity === undefined || quantity < 1 ) {
                 alert("Ajout au panier impossible");
                 return;
             }
-            app.order.addItemOrder(app.modal.itemId, price, name, quantity);
+            app.order.addItemOrder(app.modal.itemId, price, name, quantity, size);
         });
 
         $('#modal').click(function(e) {
@@ -56,6 +57,12 @@ app.modal = {
           app.modal.itemId = item.id;
           $("#modal-img").attr('src', `${item.image}`);
           $("#modal-title").text(`${item.name}`);
+          if( item.size !== undefined ) {
+              $("#size-modal").show();
+              $(".modal-size").text(`${item.size.libelle}`);
+          }else {
+              $("#size-modal").hide();
+          }
           $(".modal-price").text(`${item.price} €`);
           $(".total-price").text(`${item.price} €`);
         }

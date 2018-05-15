@@ -24,7 +24,12 @@ app.main = {
     handleEvent : () => {
         $(document).on('click', '#order-button', function(e) {
               // Start order
-              app.main.startOrder();
+            app.main.startOrder();
+        });
+
+        $(document).on('click', '#admin-button', function() {
+
+            app.main.startAdmin();
         });
     },
 
@@ -33,6 +38,11 @@ app.main = {
         $("#container").hide().load('html/order.html').show();
       // getScript
         $.getScript('js/order.js');
+    },
+
+    startAdmin : () => {
+        $("#container").hide().load('html/admin/index.html').show();
+        $.getScript('js/admin.js');
     },
 
     createElement : (child, parent) => {
