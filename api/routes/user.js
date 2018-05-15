@@ -18,8 +18,16 @@ userRouter.post('/login', function(req, res) {
 
 
 /**
-*   Route de Suppression des données
-**/
+ * @api {delete} /user/:id Remove a User
+ * @apiGroup user
+ * @apiParam {id} id User id
+ * @apiSuccessExample
+ *    HTTP/1.1 200 User deleted
+ * @apiErrorExample
+ *    HTTP/1.1 500 Internal Server Error
+ * @apiErrorExample
+ *    HTTP/1.1 403 User not found
+ */
 userRouter.delete('/', function(req, res){
   const id = req.query.id;
   UserController.find(id)

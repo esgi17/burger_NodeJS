@@ -13,7 +13,7 @@ sizeRouter.use(bodyParser.json());
 * @apiSuccess {Object[]} Size
 * @apiSuccess {Number} Size.id Size id
 * @apiSuccess {String} Size.name Size name
-* @apiSuccess {Float} Size.price_add Task price_add
+* @apiSuccess {Float} Size.price_add Size price_add
 * @apiSuccess {Date} Size.updated_at Update's date
 * @apiSuccess {Date} Size.created_at Register's date
 * @apiSuccessExample {json} Success
@@ -53,7 +53,7 @@ sizeRouter.get('/', function(req, res) {
 * @apiSuccess {Object[]} Size
 * @apiSuccess {Number} Size.id Size id
 * @apiSuccess {String} Size.name Size name
-* @apiSuccess {Float} Size.price_add Task price_add
+* @apiSuccess {Float} Size.price_add Size price_add
 * @apiSuccess {Date} Size.updated_at Update's date
 * @apiSuccess {Date} Size.created_at Register's date
 * @apiSuccessExample {json} Success
@@ -87,8 +87,16 @@ sizeRouter.post('/', function(req, res) {
 
 
 /**
-*   Route de Suppression des données
-**/
+ * @api {delete} /size/:id Remove a Size
+ * @apiGroup size
+ * @apiParam {id} id Size id
+ * @apiSuccessExample
+ *    HTTP/1.1 200 Size deleted
+ * @apiErrorExample
+ *    HTTP/1.1 500 Internal Server Error
+ * @apiErrorExample
+ *    HTTP/1.1 403 Size not found
+ */
 sizeRouter.delete('/', function(req, res){
   const id = req.query.id;
   SizeController.find(id)

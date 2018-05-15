@@ -13,7 +13,7 @@ friesRouter.use(bodyParser.json());
 * @apiSuccess {Object[]} Fries
 * @apiSuccess {Number} Fries.id Fries id
 * @apiSuccess {String} Fries.name Fries name
-* @apiSuccess {Float} Fries.price Task price
+* @apiSuccess {Float} Fries.price Fries price
 * @apiSuccess {Date} Fries.updated_at Update's date
 * @apiSuccess {Date} Fries.created_at Register's date
 * @apiSuccessExample {json} Success
@@ -57,7 +57,7 @@ friesRouter.get('/', function(req,res) {
 * @apiSuccess {Object[]} Fries
 * @apiSuccess {Number} Fries.id Fries id
 * @apiSuccess {String} Fries.name Fries name
-* @apiSuccess {Float} Fries.price Task price
+* @apiSuccess {Float} Fries.price Fries price
 * @apiSuccess {Date} Fries.updated_at Update's date
 * @apiSuccess {Date} Fries.created_at Register's date
 * @apiSuccessExample {json} Success
@@ -93,8 +93,17 @@ friesRouter.post('/', function(req,res) {
 
 
 /**
-*   Route de Suppression des données
-**/
+ * @api {delete} /fries/:id Remove Fries
+ * @apiGroup fries
+ * @apiParam {id} id Fries id
+ * @apiSuccessExample
+ *    HTTP/1.1 200 Fries deleted
+ * @apiErrorExample
+ *    HTTP/1.1 500 Internal Server Error
+ * @apiErrorExample
+ *    HTTP/1.1 403 Fries not found
+ */
+
 friesRouter.delete('/', function(req, res){
   const id = req.query.id;
   FriesController.find(id)
