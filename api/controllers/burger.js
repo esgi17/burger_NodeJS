@@ -17,12 +17,8 @@ BurgerController.add = function(name, price, urlimg) {
 };
 
 /**
-*   Récupération du prix
+*   Récupération
 **/
-BurgerController.getPrice = function(id){
-  return Burger.findById(id);
-}
-
 BurgerController.find = function(id){
   return Burger.findById(id);
 }
